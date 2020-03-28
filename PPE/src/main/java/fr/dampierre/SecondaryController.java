@@ -1,15 +1,24 @@
 package fr.dampierre;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class SecondaryController {
+    ConnexionBdd connexion = new ConnexionBdd("ppetheo", "ppetheo");
+    
+    @FXML
+	static void switchToPrimary() throws IOException {
+        App.setRoot("primary");
+    }
 
     @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
+    void OnActionClickDeconnexion(ActionEvent event) throws SQLException, IOException {
+        switchToPrimary();
     }
 
     class Visiteur {

@@ -9,14 +9,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;;
 
 public class ConnexionBdd {
-    private final String DBURL = "jdbc:mysql://ppeslam.ddns.net:3306/ppetheo";
+    private final String DBURL = "jdbc:mysql://ppeslam.ddns.net:3306/ppetheo2";
     private Connection conn;
     private String username;
     private String password;
 
     public ConnexionBdd(String username, String password) {
         this.username = username;
-        this.password = password;        
+        this.password = password;
         try {
             conn = DriverManager.getConnection(DBURL, username, password);
             if (conn != null) {
@@ -28,21 +28,35 @@ public class ConnexionBdd {
     }
 
     public void insert() {
-        
+
     }
 
-
     public void verificationMatriculePassword(String matricule, String password) throws SQLException, IOException {
-            String sql = "SELECT * FROM visiteur where idvisiteur="+matricule+" and MDP='"+password+"';";
-            Statement statement = conn.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            int i = 0;
-            while (result.next()){
-                i++;
-            }
-            if (i==1) {
-                System.out.println("Connecté");
-                PrimaryController.switchToSecondary();
-            }else System.out.println("Matricule ou password incorrect");
+        String sql = "SELECT * FROM Visiteur where VI_Matricule=" + matricule + " and VI_MDP='" + password + "';";
+        String sql1 = "SELECT * FROM Comptable where CO_Matricule=" + matricule + " and CO_MDP='" + password + "';";
+        Statement statement = conn.createStatement();
+        Statement statement1 = conn.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+        ResultSet result1 = statement1.executeQuery(sql1);
+        int i = 0;
+        int j = 0;
+        while (result.next()) {
+            i++;
+        }
+        if (i == 1) {
+            System.out.println("Connecté");
+            PrimaryController.switchToSecondary();
+        }
+
+        while (result1.next()) {
+            j++;
+        }
+        if (j == 1) {
+            System.out.println("Connecté");
+            PrimaryController.switchToSecondaryComptable();
+        }
+        if(i == 0 && j == 0){
+            System.out.println("Matricule ou Password incorect");
+        }
     }
 }

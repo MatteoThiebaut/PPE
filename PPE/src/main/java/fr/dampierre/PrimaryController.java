@@ -1,6 +1,5 @@
 package fr.dampierre;
 
-
 import java.io.IOException;
 import java.security.PublicKey;
 import java.sql.Connection;
@@ -8,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ public class PrimaryController {
     }
 
     @FXML
-    private void switchToSecondaryComptable() throws IOException {
+	static void switchToSecondaryComptable() throws IOException {
         App.setRoot("secondaryComptable");
     }
 
