@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;;
 
 public class ConnexionBdd {
-    private final String DBURL = "jdbc:mysql://ppeslam.ddns.net:3306/ppetheo2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private final String DBURL = "jdbc:mysql://90.110.87.53:3306/ppetheo2?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private Connection conn;
     private String username;
     private String password;
@@ -26,10 +26,6 @@ public class ConnexionBdd {
             ex.printStackTrace();
         }
     }
-
-    // public void insert(String ) {
-
-    // }
 
     public void verificationMatriculePassword(String matricule, String password) throws SQLException, IOException {
         String sql = "SELECT * FROM Visiteur where VI_Matricule=" + matricule + " and VI_MDP='" + password + "';";
@@ -55,8 +51,13 @@ public class ConnexionBdd {
             System.out.println("Connecté");
             PrimaryController.switchToSecondaryComptable();
         }
-        if(i == 0 && j == 0){
+        if (i == 0 && j == 0) {
             System.out.println("Matricule ou Password incorect");
         }
     }
+
+    public Connection getConn() {
+        return conn;
+    }
+
 }

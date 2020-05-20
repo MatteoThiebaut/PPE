@@ -1,6 +1,8 @@
 package fr.dampierre;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
@@ -9,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class SecondaryController {
+    private static final String Visiteur = null;
     ConnexionBdd connexion = new ConnexionBdd("ppetheo", "ppetheo");
     
     @FXML
@@ -20,8 +23,18 @@ public class SecondaryController {
     void OnActionClickDeconnexion(ActionEvent event) throws SQLException, IOException {
         switchToPrimary();
     }
+    @FXML
+    static void switchToValider() throws IOException {
+        App.setRoot("valider");
+    }
+    @FXML
+    void OnActionClickValider(ActionEvent event) throws SQLException, IOException {
+        insertVisiteur();
+        switchToValider();
+    }
+            
 
-    class Visiteur {
+    // class Visiteur {
         @FXML
         private TextField Txmatricule;
         @FXML
@@ -30,7 +43,20 @@ public class SecondaryController {
         private TextField TxPrénom;
         @FXML
         private TextField TxMotDePasse;
-    }
+        @FXML
+        private TextField TxTelephone;
+
+        public void insertVisiteur() throws SQLException {
+                Connection conn= ConnexionBdd.getConn();
+                String sqlVisiteur = "INSERT INTO Visiteur (VI_Nom, VI_Prenom) VALUES (?, ?)";
+                PreparedStatement statement = conn.prepareStatement(sqlVisiteur);
+                statement.setString(2, TxNom.getText());
+                statement.setString(3, TxPrénom.getText());
+                // statement.setString(4, TxTelephone.getText());
+            }
+        // }
+   
+
 
     class frais {
         @FXML
@@ -77,5 +103,8 @@ public class SecondaryController {
 
     @FXML
     private TextField TxMois;
+
+
+
 
 }

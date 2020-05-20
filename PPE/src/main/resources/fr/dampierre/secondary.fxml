@@ -67,5 +67,10 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Button layoutX="221.0" layoutY="695.0" mnemonicParsing="false" onAction="#OnActionClickValider" prefHeight="43.0" prefWidth="169.0" text="Valider">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
