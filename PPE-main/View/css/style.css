@@ -1,0 +1,50 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	background-color: black;
+}
+
+.content{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-width: 4px;
+	border-style: dashed;
+	border-color: green;
+	width: 350px;
+	height: 150px;
+}
+
+.content .submitform{
+	position: absolute;
+	border-width: 4px;
+	border-style: dashed;
+	border-color: green;
+	color: green;
+	left: 10px;
+	width: calc(100% - 20px);
+	height: 35px;
+	background-color: black;
+	bottom: 10px;
+}
+
+.content .inputenter{
+	position: absolute;
+	left: 10px;
+	width: calc(100% - 25px);
+	height: 25px;
+	outline: 0;
+  	border-width: 0 0 2px;
+	border-color: green;
+	color: green;
+	background-color: black;
+}
+
+.content .inputenter::placeholder{
+	color: green;
+}
+
+input[type="text"]:focus {
+	outline:none;
+}
